@@ -5,30 +5,45 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
-import androidx.navigation.fragment.NavHostFragment;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
+
+import java.util.ArrayList;
 
 public class PopularFragment extends Fragment {
 
-    @Override
-    public View onCreateView(
-            LayoutInflater inflater, ViewGroup container,
-            Bundle savedInstanceState
-    ) {
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_first, container, false);
-    }
+    private Driver Driver;
 
-    public void onViewCreated(@NonNull View view, Bundle savedInstanceState) {
-        super.onViewCreated(view, savedInstanceState);
+    private BusinessAdapter adapter;
+    private ArrayList<Business> business_items;
+    private RecyclerView recyclerView;
 
-        view.findViewById(R.id.button_first).setOnClickListener(new View.OnClickListener() {
+
+    public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+
+        View root = inflater.inflate(R.layout.popular_fragment, container, false);
+        recyclerView = root.findViewById(R.id.recyclerView);
+        recyclerView.setLayoutManager(new LinearLayoutManager(getActivity().getApplicationContext()));
+        recyclerView.setAdapter(new BusinessAdapter(getActivity().getApplicationContext(), new ArrayList<Business>()));
+
+        business_items = new ArrayList<Business>();
+        Driver = new Driver();
+
+        Driver.getNewHot(new BusinessData() {
             @Override
-            public void onClick(View view) {
-                NavHostFragment.findNavController(PopularFragment.this)
-                        .navigate(R.id.action_FirstFragment_to_SecondFragment);
+            public void BusinessRequest(ArrayList<Business> businesses) {
+                for(Business business : businesses) {
+                    business_items.add(business);
+                }
+
+                adapter = new BusinessAdapter(getActivity().getApplicationContext(), business_items);
+                recyclerView.setAdapter(adapter);
             }
         });
+
+        return root;
     }
 }
