@@ -4,6 +4,8 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.RadioGroup;
+import android.widget.Toast;
 
 
 import androidx.annotation.NonNull;
@@ -29,13 +31,48 @@ public class PopularFragment extends Fragment {
         recyclerView.setLayoutManager(new LinearLayoutManager(getActivity().getApplicationContext()));
         recyclerView.setAdapter(new BusinessAdapter(getActivity().getApplicationContext(), new ArrayList<Business>()));
 
+        final RadioGroup radio = (RadioGroup) root.findViewById(R.id.radioGroup);
+
+        radio.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
+
+            @Override
+            public void onCheckedChanged(RadioGroup group, int checkedId) {
+
+                View radioButton = radio.findViewById(checkedId);
+                int index = radio.indexOfChild(radioButton);
+
+                // Add logic here
+
+                switch (index) {
+                    case 0: // first button trendingGyms();
+                        trendingHot();
+                        break;
+
+                    case 1: // secondbutton
+                        trendingGyms();
+                        break;
+
+                    case 2: // secondbutton
+                        getRestaurants();
+                        break;
+
+                }
+            }
+        });
+
         business_items = new ArrayList<Business>();
         Driver = new Driver();
 
-        Driver.getNewHot(new BusinessData() {
+        return root;
+    }
+
+    public void trendingGyms() {
+
+        Driver.getGyms(new BusinessData() {
             @Override
             public void BusinessRequest(ArrayList<Business> businesses) {
-                for(Business business : businesses) {
+                business_items.clear();
+                for (Business business : businesses) {
                     business_items.add(business);
                 }
 
@@ -43,7 +80,37 @@ public class PopularFragment extends Fragment {
                 recyclerView.setAdapter(adapter);
             }
         });
+    }
 
-        return root;
+    public void trendingHot() {
+
+        Driver.getNewHot(new BusinessData() {
+            @Override
+            public void BusinessRequest(ArrayList<Business> businesses) {
+                business_items.clear();
+                for (Business business : businesses) {
+                    business_items.add(business);
+                }
+
+                adapter = new BusinessAdapter(getActivity().getApplicationContext(), business_items);
+                recyclerView.setAdapter(adapter);
+            }
+        });
+    }
+
+    public void getRestaurants() {
+
+        Driver.getRestaurants(new BusinessData() {
+            @Override
+            public void BusinessRequest(ArrayList<Business> businesses) {
+                business_items.clear();
+                for (Business business : businesses) {
+                    business_items.add(business);
+                }
+
+                adapter = new BusinessAdapter(getActivity().getApplicationContext(), business_items);
+                recyclerView.setAdapter(adapter);
+            }
+        });
     }
 }
