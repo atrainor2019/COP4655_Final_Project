@@ -39,7 +39,9 @@ public class BusinessAdapter extends RecyclerView.Adapter<BusinessAdapter.Busine
         // bind the textview with data received
 
         final Business business = data.get(i);
-        Picasso.with(layoutInflater.getContext()).load(business.getImgSrc()).into(viewHolder.Business_photo);
+        if (!business.getImgSrc().isEmpty()) {
+            Picasso.with(layoutInflater.getContext()).load(business.getImgSrc()).into(viewHolder.Business_photo);
+        }
         viewHolder.business = business;
         viewHolder.Business_title.setText(business.getTitle());
 

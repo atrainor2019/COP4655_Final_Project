@@ -20,7 +20,7 @@ public class Driver {
     private String my_token ="yudmsKPzscsPbfFo0CPQLGkzENmb6KjlPAxGUd34eVR0fYZ8eRIFdn5wzlLmikkyIXrPCzMnEHIhxfsm0s0r4_dsqYySlHBLnCi6PoN1hkEkKAZV0InZ5V5tTOPPX3Yx";
 
     public void getNewHot(final BusinessData returnVal){
-        String url = api_url + "attributes=hot_and_new&location=NYC";
+        String url = api_url + "attributes=hot_and_new&location=Miami";
         JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(Request.Method.GET, url, null, new Response.Listener<JSONObject>() {
 
             @Override
@@ -59,7 +59,7 @@ public class Driver {
     }
 
     public void getGyms(final BusinessData returnVal){
-        String url = api_url + "location=NYC&term=gym";
+        String url = api_url + "location=Port_Saint_Lucie&term=gym";
         JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(Request.Method.GET, url, null, new Response.Listener<JSONObject>() {
 
             @Override
@@ -98,7 +98,7 @@ public class Driver {
     }
 
     public void getRestaurants(final BusinessData returnVal){
-        String url = api_url + "term=restaurants&location=NYC";
+        String url = api_url + "term=restaurants&location=Miami";
         JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(Request.Method.GET, url, null, new Response.Listener<JSONObject>() {
 
             @Override
