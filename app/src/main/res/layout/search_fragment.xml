@@ -9,12 +9,12 @@
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recyclerView"
-        android:layout_width="390dp"
-        android:layout_height="551dp"
+        android:layout_width="416dp"
+        android:layout_height="289dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/radioGroup" />
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toStartOf="parent" />
 
     <RadioGroup
         tools:context=".popular_fragment"
@@ -45,7 +45,7 @@
             android:paddingTop="3dp"
             android:paddingRight="16dp"
             android:paddingBottom="3dp"
-            android:text="Trending"
+            android:text="Name/Title"
             android:textColor="@color/radio_flat_text_selector" />
 
         <RadioButton
@@ -59,7 +59,7 @@
             android:paddingTop="3dp"
             android:paddingRight="16dp"
             android:paddingBottom="3dp"
-            android:text="Gyms"
+            android:text="Category"
             android:textColor="@color/radio_flat_text_selector" />
 
         <RadioButton
@@ -75,10 +75,32 @@
             android:paddingTop="3dp"
             android:paddingRight="16dp"
             android:paddingBottom="3dp"
-            android:text="Restaurants"
+            android:text="Location"
             android:textColor="@color/radio_flat_text_selector" />
 
     </RadioGroup>
+
+    <Button
+        android:id="@+id/button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="80dp"
+        android:text="Search"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/radioGroup" />
+
+    <EditText
+        android:id="@+id/SearchBox"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:inputType="textPersonName"
+        android:text="Name"
+        app:layout_constraintBottom_toTopOf="@+id/button"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/radioGroup" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

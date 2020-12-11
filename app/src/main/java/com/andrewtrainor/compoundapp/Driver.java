@@ -55,7 +55,7 @@ public class Driver {
             }
         };
 
-        MainActivity.getVolley().addToRequestQueue(jsonObjectRequest);
+        SecondaryActivity.getVolley().addToRequestQueue(jsonObjectRequest);
     }
 
     public void getGyms(final BusinessData returnVal){
@@ -94,7 +94,7 @@ public class Driver {
             }
         };
 
-        MainActivity.getVolley().addToRequestQueue(jsonObjectRequest);
+        SecondaryActivity.getVolley().addToRequestQueue(jsonObjectRequest);
     }
 
     public void getRestaurants(final BusinessData returnVal){
@@ -133,7 +133,7 @@ public class Driver {
             }
         };
 
-        MainActivity.getVolley().addToRequestQueue(jsonObjectRequest);
+        SecondaryActivity.getVolley().addToRequestQueue(jsonObjectRequest);
     }
 
 }

@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item
+        android:id="@+id/navigation_search"
+        android:title="Nav1" />
+
+    <item
+        android:id="@+id/navigation_trending"
+        android:title="Nav2" />
+
+    <item
+        android:id="@+id/navigation_favorites"
+        android:title="Nav3" />
+
+    <item
+        android:id="@+id/navigation_logout"
+        android:title="Nav4"/>
+
+</menu>
