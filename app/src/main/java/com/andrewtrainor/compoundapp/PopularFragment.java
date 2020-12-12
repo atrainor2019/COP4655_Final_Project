@@ -32,6 +32,8 @@ public class PopularFragment extends Fragment {
 
         final RadioGroup radio = (RadioGroup) root.findViewById(R.id.radioGroup);
 
+
+
         radio.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
 
             @Override
@@ -61,6 +63,8 @@ public class PopularFragment extends Fragment {
 
         business_items = new ArrayList<Business>();
         Driver = new Driver();
+
+        trendingHot();
 
         return root;
     }

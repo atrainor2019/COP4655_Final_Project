@@ -1,6 +1,7 @@
 package com.andrewtrainor.compoundapp;
 
 import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.MenuItem;
 
@@ -48,6 +49,10 @@ public class SecondaryActivity extends AppCompatActivity {
                         case R.id.navigation_trending:
                             selectedFragment = new PopularFragment();
                             break;
+                        case R.id.navigation_logout:
+                            Intent i = new Intent(getApplication(), MainActivity.class);
+                            startActivity(i);
+                            return true;
                     }
 
                     getSupportFragmentManager().beginTransaction().replace(R.id.nav_host_fragment,

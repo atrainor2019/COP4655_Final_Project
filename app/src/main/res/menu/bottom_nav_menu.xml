@@ -13,10 +13,12 @@
 
     <item
         android:id="@+id/navigation_favorites"
+        android:icon ="@drawable/fave"
         android:title="Favorites" />
 
     <item
         android:id="@+id/navigation_logout"
+        android:icon="@drawable/logout"
         android:title="Goodbye"/>
 
 </menu>
