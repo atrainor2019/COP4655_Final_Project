@@ -136,4 +136,43 @@ public class Driver {
         SecondaryActivity.getVolley().addToRequestQueue(jsonObjectRequest);
     }
 
+    public void getByName(String title, final BusinessData returnVal){
+        String url = api_url + "term="+ title +"&location=Miami";
+        JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(Request.Method.GET, url, null, new Response.Listener<JSONObject>() {
+
+            @Override
+            public void onResponse(JSONObject response) {
+                try {
+                    ArrayList<Business> Business_list = new ArrayList<>();
+                    JSONArray response_array = response.getJSONArray("businesses");
+                    for(int array_len = 0; array_len < response_array.length(); array_len++) {
+
+                        String name = (String) response_array.getJSONObject(array_len).get("name");
+                        String business_img = (String) response_array.getJSONObject(array_len).get("image_url");
+                        Business business= new Business(name, business_img);
+
+                        Business_list.add(business);
+                    }
+                    returnVal.BusinessRequest(Business_list);
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+            }
+        }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                System.out.println(error.toString());
+            }
+        }){
+            @Override
+            public Map < String, String > getHeaders() throws AuthFailureError {
+                Map<String, String> params = new HashMap<>();
+                params.put("Authorization", "bearer " + my_token);
+                return params;
+            }
+        };
+
+        SecondaryActivity.getVolley().addToRequestQueue(jsonObjectRequest);
+    }
+
 }
