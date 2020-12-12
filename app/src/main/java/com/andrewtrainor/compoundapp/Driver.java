@@ -32,7 +32,11 @@ public class Driver {
 
                         String name = (String) response_array.getJSONObject(array_len).get("name");
                         String business_img = (String) response_array.getJSONObject(array_len).get("image_url");
-                        Business business= new Business(name, business_img);
+
+                        double business_lat = 1;
+                        double business_lon = 1;
+
+                        Business business= new Business(name, business_img, business_lat, business_lon);
 
                         Business_list.add(business);
                     }
@@ -71,7 +75,10 @@ public class Driver {
 
                         String name = (String) response_array.getJSONObject(array_len).get("name");
                         String business_img = (String) response_array.getJSONObject(array_len).get("image_url");
-                        Business business= new Business(name, business_img);
+                        double business_lat = 1;
+                        double business_lon = 1;
+
+                        Business business= new Business(name, business_img, business_lat, business_lon);
 
                         Business_list.add(business);
                     }
@@ -110,7 +117,10 @@ public class Driver {
 
                         String name = (String) response_array.getJSONObject(array_len).get("name");
                         String business_img = (String) response_array.getJSONObject(array_len).get("image_url");
-                        Business business= new Business(name, business_img);
+                        double business_lat = 1;
+                        double business_lon = 1;
+
+                        Business business= new Business(name, business_img, business_lat, business_lon);
 
                         Business_list.add(business);
                     }
@@ -137,7 +147,7 @@ public class Driver {
     }
 
     public void getByName(String title, final BusinessData returnVal){
-        String url = api_url + "term="+ title +"&location=Miami";
+        String url = api_url + "term="+ title +"&location=Boca_Raton";
         JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(Request.Method.GET, url, null, new Response.Listener<JSONObject>() {
 
             @Override
@@ -149,7 +159,11 @@ public class Driver {
 
                         String name = (String) response_array.getJSONObject(array_len).get("name");
                         String business_img = (String) response_array.getJSONObject(array_len).get("image_url");
-                        Business business= new Business(name, business_img);
+                        Double business_lat = (Double) response_array.getJSONObject(array_len).getJSONObject("coordinates").getDouble("latitude");
+                        Double business_lon = (Double) response_array.getJSONObject(array_len).getJSONObject("coordinates").getDouble("longitude");
+
+
+                        Business business= new Business(name, business_img, business_lat, business_lon);
 
                         Business_list.add(business);
                     }

@@ -44,6 +44,9 @@ public class BusinessAdapter extends RecyclerView.Adapter<BusinessAdapter.Busine
         }
         viewHolder.business = business;
         viewHolder.Business_title.setText(business.getTitle());
+        viewHolder.business_lat = business.getLat();
+        viewHolder.business_lon= business.getLon();
+
 
     }
 
@@ -55,6 +58,8 @@ public class BusinessAdapter extends RecyclerView.Adapter<BusinessAdapter.Busine
         CardView cv;
         TextView Business_description;
         TextView Business_title;
+        double business_lat;
+        double business_lon;
         ImageView Business_photo;
         public Business business;
 

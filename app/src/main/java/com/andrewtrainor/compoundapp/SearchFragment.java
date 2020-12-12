@@ -60,12 +60,12 @@ public class SearchFragment extends Fragment implements OnMapReadyCallback {
             public void onClick(View v) {
 
                 switch(radio.getCheckedRadioButtonId()) {
-                    case R.id.radio0: // movie title
+                    case R.id.radio0:
                         business_items.clear();
                         searchByName();
                         break;
 
-                    case R.id.radio1: // director
+                    case R.id.radio1:
                         business_items.clear();
                         break;
                 }
@@ -100,8 +100,10 @@ public class SearchFragment extends Fragment implements OnMapReadyCallback {
             @Override
             public void BusinessRequest(ArrayList<Business> businesses) {
                 business_items.clear();
+                mMap.clear();
                 for (Business business : businesses) {
                     business_items.add(business);
+                    newLocation(business.getLat(), business.getLon(), business.getTitle());
                 }
 
                 adapter = new BusinessAdapter(getActivity().getApplicationContext(), business_items);
@@ -118,6 +120,7 @@ public class SearchFragment extends Fragment implements OnMapReadyCallback {
                 business_items.clear();
                 for (Business business : businesses) {
                     business_items.add(business);
+
                 }
 
                 adapter = new BusinessAdapter(getActivity().getApplicationContext(), business_items);
@@ -138,12 +141,11 @@ public class SearchFragment extends Fragment implements OnMapReadyCallback {
     }
 
     //update the location of the map
-    void newLocation() {
+    void newLocation(double lat, double lon, String title) {
         if (mMap != null) {
-            LatLng pos = new LatLng(12, 12); //get new position
+            LatLng pos = new LatLng(lat, lon); //get new position
             mMap.addMarker(new
-                    MarkerOptions().position(pos).title("Andrew Trainor Final Project"));
-            mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(pos, 11)); // move camera and change zoom, all other properties remain the same
+                    MarkerOptions().position(pos).title(title));
 
         }
     }
