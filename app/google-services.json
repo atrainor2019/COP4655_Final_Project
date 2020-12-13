@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "418943618500",
+    "project_id": "yelp-compoundapp",
+    "storage_bucket": "yelp-compoundapp.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:418943618500:android:6cdf42e49266e372ea6891",
+        "android_client_info": {
+          "package_name": "com.andrewtrainor.compoundapp"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "418943618500-qb74ohnm6qv9jo5lrmhs9menj77dj9vk.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCNgEQxxYaK4NoM7BRq9I5iuF-poKs69r0"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "418943618500-qb74ohnm6qv9jo5lrmhs9menj77dj9vk.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

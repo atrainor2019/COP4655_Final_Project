@@ -19,6 +19,7 @@ public class Driver {
     private String api_url = "https://api.yelp.com/v3/businesses/search?";
     private String my_token ="yudmsKPzscsPbfFo0CPQLGkzENmb6KjlPAxGUd34eVR0fYZ8eRIFdn5wzlLmikkyIXrPCzMnEHIhxfsm0s0r4_dsqYySlHBLnCi6PoN1hkEkKAZV0InZ5V5tTOPPX3Yx";
 
+    public static HashMap<String, Profile> users = new HashMap<>();
     public void getNewHot(final BusinessData returnVal){
         String url = api_url + "attributes=hot_and_new&location=Miami";
         JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(Request.Method.GET, url, null, new Response.Listener<JSONObject>() {
@@ -63,7 +64,7 @@ public class Driver {
     }
 
     public void getGyms(final BusinessData returnVal){
-        String url = api_url + "location=Port_Saint_Lucie&term=gym";
+        String url = api_url + "location=Miami&term=gym";
         JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(Request.Method.GET, url, null, new Response.Listener<JSONObject>() {
 
             @Override
@@ -187,6 +188,17 @@ public class Driver {
         };
 
         SecondaryActivity.getVolley().addToRequestQueue(jsonObjectRequest);
+    }
+
+    public void update(Profile profile) {
+        Profile _user = users.get(profile.getUsername());
+        _user.setFavorites(profile.getFavorites());
+    }
+
+    public Profile create(String username, String password) {
+        Profile user = new Profile(username, password);
+        users.put(username, user);
+        return user;
     }
 
 }

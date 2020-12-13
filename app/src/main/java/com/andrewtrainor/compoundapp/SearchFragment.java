@@ -47,8 +47,6 @@ public class SearchFragment extends Fragment implements OnMapReadyCallback {
         input_btn = root.findViewById(R.id.search_btn);
         user_input = root.findViewById(R.id.SearchBox);
 
-
-
         final RadioGroup radio = (RadioGroup) root.findViewById(R.id.radioGroup);
 
         // Obtain the SupportMapFragment and get notified when the map is ready to be used.
@@ -74,6 +72,8 @@ public class SearchFragment extends Fragment implements OnMapReadyCallback {
 
         business_items = new ArrayList<Business>();
         Driver = new Driver();
+
+        searchByLoc();
 
         return root;
     }
@@ -137,6 +137,7 @@ public class SearchFragment extends Fragment implements OnMapReadyCallback {
 
         mMap.addMarker(new
                 MarkerOptions().position(pos).title("Your Current Location"));
+
         mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(pos, 11));
     }
 
@@ -146,6 +147,10 @@ public class SearchFragment extends Fragment implements OnMapReadyCallback {
             LatLng pos = new LatLng(lat, lon); //get new position
             mMap.addMarker(new
                     MarkerOptions().position(pos).title(title));
+
+            LatLng posUpdated = new LatLng(26.3750, -80.1011);
+
+            mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(posUpdated, 11));
 
         }
     }

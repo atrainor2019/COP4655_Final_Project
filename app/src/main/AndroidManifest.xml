@@ -21,7 +21,7 @@
             android:value="AIzaSyAabBP2kkBsOG1lOCCwf7H1de1iCIzR10A" />
 
         <activity
-            android:name=".SecondaryActivity"
+            android:name=".Register"
             android:label="Andrew Trainor - Final Project"
             android:windowSoftInputMode="adjustNothing">
             <intent-filter>
@@ -29,7 +29,9 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".MainActivity" >
+        <activity android:name=".SecondaryActivity"
+            android:windowSoftInputMode="adjustNothing">
+
             <!--Default Intent Filter-->
             <intent-filter>
                 <action android:name="android.intent.action.DEFAULT" />

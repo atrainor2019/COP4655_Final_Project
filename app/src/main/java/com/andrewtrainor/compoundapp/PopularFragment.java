@@ -56,7 +56,6 @@ public class PopularFragment extends Fragment {
                     case 2: // secondbutton
                         getRestaurants();
                         break;
-
                 }
             }
         });

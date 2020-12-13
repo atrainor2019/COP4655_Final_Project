@@ -14,9 +14,11 @@ import androidx.navigation.ui.AppBarConfiguration;
 import androidx.navigation.ui.NavigationUI;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
+import com.google.firebase.auth.FirebaseAuth;
 
 public class SecondaryActivity extends AppCompatActivity {
 
+    private static Profile profile;
     private static Context context;
 
     public static MySingleton getVolley() {
@@ -28,6 +30,7 @@ public class SecondaryActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.secondary_activity);
         context = getApplicationContext();
+        profile = (Profile) getIntent().getSerializableExtra("profileobj");
 
         BottomNavigationView navView = findViewById(R.id.app_nav_bar);
         navView.setOnNavigationItemSelectedListener(navListener);
@@ -36,6 +39,7 @@ public class SecondaryActivity extends AppCompatActivity {
                 new SearchFragment()).commit();
 
     }
+
 
     private BottomNavigationView.OnNavigationItemSelectedListener navListener =
             new BottomNavigationView.OnNavigationItemSelectedListener() {
@@ -49,8 +53,12 @@ public class SecondaryActivity extends AppCompatActivity {
                         case R.id.navigation_trending:
                             selectedFragment = new PopularFragment();
                             break;
+                        case R.id.navigation_favorites:
+                            selectedFragment = new FavFragment();
+                            break;
                         case R.id.navigation_logout:
-                            Intent i = new Intent(getApplication(), MainActivity.class);
+                            FirebaseAuth.getInstance().signOut();
+                            Intent i = new Intent(getApplication(), Register.class);
                             startActivity(i);
                             return true;
                     }
@@ -62,4 +70,7 @@ public class SecondaryActivity extends AppCompatActivity {
                 }
             };
 
+    public static Profile getProfile() {
+        return profile;
+    }
 }
