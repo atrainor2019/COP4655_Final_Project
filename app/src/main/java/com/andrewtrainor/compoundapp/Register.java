@@ -1,6 +1,7 @@
 package com.andrewtrainor.compoundapp;
 
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.text.TextUtils;
@@ -32,6 +33,8 @@ public class Register extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+
+
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_register);
         context = getApplicationContext();
@@ -44,6 +47,13 @@ public class Register extends AppCompatActivity {
         mLoginBtn = findViewById(R.id.createText2);
 
         fAuth = FirebaseAuth.getInstance();
+
+        mLoginBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(getApplicationContext(),Login.class));
+            }
+        });
 
         if(fAuth.getCurrentUser() != null){
             startActivity(new Intent(getApplicationContext(), SecondaryActivity.class));
@@ -82,15 +92,12 @@ public class Register extends AppCompatActivity {
                             startActivity(intent);
 
                         }else{
-                            Toast.makeText(Register.this, "An error has occurred please try again.", Toast.LENGTH_SHORT).show();
+                            Toast.makeText(Register.this, "Error ! " + task.getException().getMessage(), Toast.LENGTH_SHORT).show();
 
                         }
 
                     }
                 });
-
-
-
             }
         });
     }
