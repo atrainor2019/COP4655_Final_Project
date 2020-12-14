@@ -59,7 +59,7 @@
         app:layout_constraintHorizontal_bias="0.497"
         android:clickable="true"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/registerBtn" />
+        app:layout_constraintTop_toBottomOf="@+id/createText" />
 
     <EditText
         android:id="@+id/email3"
@@ -82,7 +82,7 @@
         app:layout_constraintTop_toBottomOf="@+id/fullName" />
 
     <Button
-        android:id="@+id/registerBtn"
+        android:id="@+id/createText"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"

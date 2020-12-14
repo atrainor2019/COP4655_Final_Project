@@ -10,6 +10,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 
 import com.andrewtrainor.compoundapp.BusinessData.MySingleton;
+import com.andrewtrainor.compoundapp.UserData.Login;
 import com.andrewtrainor.compoundapp.UserData.Profile;
 import com.andrewtrainor.compoundapp.UserData.Register;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
@@ -57,7 +58,7 @@ public class SecondaryActivity extends AppCompatActivity {
                             break;
                         case R.id.navigation_logout:
                             FirebaseAuth.getInstance().signOut();
-                            Intent i = new Intent(getApplication(), Register.class);
+                            Intent i = new Intent(getApplication(), Login.class);
                             startActivity(i);
                             return true;
                     }
