@@ -12,11 +12,16 @@ import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.andrewtrainor.compoundapp.BusinessData.Business;
+import com.andrewtrainor.compoundapp.BusinessData.BusinessAdapter;
+import com.andrewtrainor.compoundapp.BusinessData.BusinessData;
+import com.andrewtrainor.compoundapp.BusinessData.Driver;
+
 import java.util.ArrayList;
 
 public class PopularFragment extends Fragment {
 
-    private Driver Driver;
+    private com.andrewtrainor.compoundapp.BusinessData.Driver Driver;
 
     private BusinessAdapter adapter;
     private ArrayList<Business> business_items;

@@ -1,11 +1,7 @@
-package com.andrewtrainor.compoundapp;
-
-import android.content.Context;
-import android.widget.Toast;
+package com.andrewtrainor.compoundapp.BusinessData;
 
 import java.io.Serializable;
 import java.util.ArrayList;
-import java.util.HashMap;
 
 public class Business implements Serializable {
     private String name;

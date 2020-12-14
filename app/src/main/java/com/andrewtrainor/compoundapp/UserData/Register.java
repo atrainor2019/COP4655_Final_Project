@@ -1,7 +1,6 @@
-package com.andrewtrainor.compoundapp;
+package com.andrewtrainor.compoundapp.UserData;
 
 import android.content.Context;
-import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.text.TextUtils;
@@ -14,12 +13,13 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.andrewtrainor.compoundapp.BusinessData.Driver;
+import com.andrewtrainor.compoundapp.R;
+import com.andrewtrainor.compoundapp.SecondaryActivity;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
-
-import org.w3c.dom.Text;
 
 public class Register extends AppCompatActivity {
     private static Context context;
@@ -51,12 +51,14 @@ public class Register extends AppCompatActivity {
         mLoginBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(new Intent(getApplicationContext(),Login.class));
+                startActivity(new Intent(getApplicationContext(), Login.class));
             }
         });
 
         if(fAuth.getCurrentUser() != null){
-            startActivity(new Intent(getApplicationContext(), SecondaryActivity.class));
+            FirebaseAuth.getInstance().signOut();
+            Intent i = new Intent(getApplication(), Register.class);
+            startActivity(i);
             finish();
         }
 

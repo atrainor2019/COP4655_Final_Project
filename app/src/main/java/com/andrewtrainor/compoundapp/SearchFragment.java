@@ -4,7 +4,6 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.RadioGroup;
@@ -12,10 +11,13 @@ import android.widget.RadioGroup;
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentActivity;
-import androidx.navigation.fragment.NavHostFragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.andrewtrainor.compoundapp.BusinessData.Business;
+import com.andrewtrainor.compoundapp.BusinessData.BusinessAdapter;
+import com.andrewtrainor.compoundapp.BusinessData.BusinessData;
+import com.andrewtrainor.compoundapp.BusinessData.Driver;
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.OnMapReadyCallback;
@@ -27,7 +29,7 @@ import java.util.ArrayList;
 
 public class SearchFragment extends Fragment implements OnMapReadyCallback {
 
-    private Driver Driver;
+    private com.andrewtrainor.compoundapp.BusinessData.Driver Driver;
     private Button input_btn;
     private EditText user_input;
     private BusinessAdapter adapter;

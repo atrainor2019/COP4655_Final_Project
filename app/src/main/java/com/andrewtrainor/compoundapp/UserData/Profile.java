@@ -1,4 +1,6 @@
-package com.andrewtrainor.compoundapp;
+package com.andrewtrainor.compoundapp.UserData;
+
+import com.andrewtrainor.compoundapp.BusinessData.Business;
 
 import java.io.Serializable;
 import java.util.ArrayList;

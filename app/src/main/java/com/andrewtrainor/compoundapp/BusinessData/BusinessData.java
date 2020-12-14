@@ -1,4 +1,4 @@
-package com.andrewtrainor.compoundapp;
+package com.andrewtrainor.compoundapp.BusinessData;
 
 import java.util.ArrayList;
 

@@ -21,7 +21,7 @@
             android:value="AIzaSyAabBP2kkBsOG1lOCCwf7H1de1iCIzR10A" />
 
         <activity
-            android:name=".Register"
+            android:name=".UserData.Register"
             android:label="Andrew Trainor - Final Project"
             android:windowSoftInputMode="adjustNothing">
             <intent-filter>
@@ -37,7 +37,7 @@
                 <action android:name="android.intent.action.DEFAULT" />
             </intent-filter>
         </activity>
-        <activity android:name=".Login"
+        <activity android:name=".UserData.Login"
             android:windowSoftInputMode="adjustNothing">
 
             <!--Default Intent Filter-->

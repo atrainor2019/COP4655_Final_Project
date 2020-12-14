@@ -1,5 +1,9 @@
-package com.andrewtrainor.compoundapp;
+package com.andrewtrainor.compoundapp.BusinessData;
 
+import com.andrewtrainor.compoundapp.BusinessData.Business;
+import com.andrewtrainor.compoundapp.BusinessData.BusinessData;
+import com.andrewtrainor.compoundapp.SecondaryActivity;
+import com.andrewtrainor.compoundapp.UserData.Profile;
 import com.android.volley.AuthFailureError;
 import com.android.volley.Request;
 import com.android.volley.Response;

@@ -1,4 +1,4 @@
-package com.andrewtrainor.compoundapp;
+package com.andrewtrainor.compoundapp.BusinessData;
 
 import android.content.Context;
 import android.graphics.Bitmap;

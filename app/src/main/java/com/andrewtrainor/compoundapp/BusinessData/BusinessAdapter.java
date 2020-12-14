@@ -1,4 +1,4 @@
-package com.andrewtrainor.compoundapp;
+package com.andrewtrainor.compoundapp.BusinessData;
 
 import android.content.Context;
 import android.view.LayoutInflater;
@@ -7,7 +7,6 @@ import android.view.ViewGroup;
 import android.widget.CompoundButton;
 import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toast;
 import android.widget.ToggleButton;
 
 import androidx.annotation.NonNull;
@@ -15,9 +14,11 @@ import androidx.cardview.widget.CardView;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.andrewtrainor.compoundapp.FavFragment;
+import com.andrewtrainor.compoundapp.R;
+import com.andrewtrainor.compoundapp.SecondaryActivity;
 import com.squareup.picasso.Picasso;
 
-import java.util.ArrayList;
 import java.util.List;
 
 public class BusinessAdapter extends RecyclerView.Adapter<BusinessAdapter.BusinessViewHolder> {
@@ -25,7 +26,7 @@ public class BusinessAdapter extends RecyclerView.Adapter<BusinessAdapter.Busine
     private LayoutInflater layoutInflater;
     private List<Business> data;
 
-    BusinessAdapter(Context context, List<Business> data) {
+    public BusinessAdapter(Context context, List<Business> data) {
         this.layoutInflater = LayoutInflater.from(context);
         this.data = data;
     }
@@ -57,15 +58,31 @@ public class BusinessAdapter extends RecyclerView.Adapter<BusinessAdapter.Busine
 
         viewHolder.setcallback(frag);
 
+
+        if(SecondaryActivity.getProfile().businessExistsInFavorites(business)) {
+            viewHolder.toggle.setChecked(true);
+        } else {
+            viewHolder.toggle.setChecked(false);
+        }
+
         viewHolder.toggle.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
 
+                if(!SecondaryActivity.getProfile().businessExistsInFavorites(business)) {
                     SecondaryActivity.getProfile().addBusinessToFavorites(business);
                     viewHolder.toggle.setChecked(true);
+                } else {
+                    SecondaryActivity.getProfile().removeFromFavorites(business);
+                    viewHolder.toggle.setChecked(false);
+                }
 
                 Driver driver = new Driver();
                 driver.update(SecondaryActivity.getProfile());
+
+                if(frag!= null){
+                    ((FavFragment) frag).unFavorite();
+                }
 
             }
         });
