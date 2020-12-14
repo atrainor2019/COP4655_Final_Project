@@ -46,7 +46,10 @@ public class Register extends AppCompatActivity {
         mRegisterBtn = findViewById(R.id.createText);
         mLoginBtn = findViewById(R.id.createText2);
 
+        //Firebase Auth
         fAuth = FirebaseAuth.getInstance();
+
+        //Onclick Listener for if the user wants to login instead and does not need to register.
 
         mLoginBtn.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -62,6 +65,7 @@ public class Register extends AppCompatActivity {
             finish();
         }
 
+        //set onclick listener for User Registration and verify fields
         mRegisterBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -82,9 +86,12 @@ public class Register extends AppCompatActivity {
                     return;
                 }
 
+                //create the User with Email and password
                 fAuth.createUserWithEmailAndPassword(email, password).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
                     @Override
                     public void onComplete(@NonNull Task<AuthResult> task) {
+
+                        //registration is successful
                         if(task.isSuccessful()){
                             profile = driver.create(email, password);
                             Toast.makeText(Register.this, "User Created.", Toast.LENGTH_SHORT).show();
@@ -93,6 +100,7 @@ public class Register extends AppCompatActivity {
                             intent.putExtra("profileobj", profile);
                             startActivity(intent);
 
+                        //Registration error
                         }else{
                             Toast.makeText(Register.this, "Error ! " + task.getException().getMessage(), Toast.LENGTH_SHORT).show();
 

@@ -18,12 +18,18 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
+//DRIVER HANDLES ALL DATA PROCESSING FOR BUSINESSES.
+//ALL JSONOBJECTREQUESTS CALLED FROM HERE.
+
 public class Driver {
 
     private String api_url = "https://api.yelp.com/v3/businesses/search?";
     private String my_token ="yudmsKPzscsPbfFo0CPQLGkzENmb6KjlPAxGUd34eVR0fYZ8eRIFdn5wzlLmikkyIXrPCzMnEHIhxfsm0s0r4_dsqYySlHBLnCi6PoN1hkEkKAZV0InZ5V5tTOPPX3Yx";
 
+    //Profile user for the logged in user
     public static HashMap<String, Profile> users = new HashMap<>();
+
+    //Gets business by type New and Trending via JsonObjectRequest and Volley
     public void getNewHot(final BusinessData returnVal){
         String url = api_url + "attributes=hot_and_new&location=Miami";
         JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(Request.Method.GET, url, null, new Response.Listener<JSONObject>() {
@@ -60,6 +66,8 @@ public class Driver {
                 System.out.println(error.toString());
             }
         }){
+
+            //Attach Authorization in the form of the YELP bearer token to each request
             @Override
             public Map < String, String > getHeaders() throws AuthFailureError {
                 Map<String, String> params = new HashMap<>();
@@ -68,9 +76,11 @@ public class Driver {
             }
         };
 
+        //Volley
         SecondaryActivity.getVolley().addToRequestQueue(jsonObjectRequest);
     }
 
+    //Gets business by type Gyms via JsonObjectRequest and Volley
     public void getGyms(final BusinessData returnVal){
         String url = api_url + "location=Miami&term=gym";
         JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(Request.Method.GET, url, null, new Response.Listener<JSONObject>() {
@@ -117,6 +127,7 @@ public class Driver {
         SecondaryActivity.getVolley().addToRequestQueue(jsonObjectRequest);
     }
 
+    //Gets business by type Restaurants via JsonObjectRequest and Volley
     public void getRestaurants(final BusinessData returnVal){
         String url = api_url + "term=restaurants&location=Miami";
         JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(Request.Method.GET, url, null, new Response.Listener<JSONObject>() {
@@ -163,6 +174,8 @@ public class Driver {
         SecondaryActivity.getVolley().addToRequestQueue(jsonObjectRequest);
     }
 
+    //Gets business by Name via JsonObjectRequest and Volley
+    //API request
     public void getByName(String title, final BusinessData returnVal){
         String url = api_url + "term="+ title +"&location=Boca_Raton";
         JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(Request.Method.GET, url, null, new Response.Listener<JSONObject>() {
@@ -210,6 +223,8 @@ public class Driver {
         SecondaryActivity.getVolley().addToRequestQueue(jsonObjectRequest);
     }
 
+    //Gets business by location via JsonObjectRequest and Volley
+    //API request
     public void getByLoc(String title, String location, final BusinessData returnVal){
         String url = api_url + "term="+ title +"&location=" + location;
         JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(Request.Method.GET, url, null, new Response.Listener<JSONObject>() {
@@ -257,12 +272,15 @@ public class Driver {
         SecondaryActivity.getVolley().addToRequestQueue(jsonObjectRequest);
     }
 
-
+    //Get and update the current Profile class for the logged in user.
+    //This will update the favorites as well as the username and password
     public void update(Profile profile) {
         Profile _user = users.get(profile.getUsername());
         _user.setFavorites(profile.getFavorites());
     }
 
+    //create a Profile for the logged in user. This will create a username
+    //and password object used for identification.
     public Profile create(String username, String password) {
         Profile user = new Profile(username, password);
         users.put(username, user);

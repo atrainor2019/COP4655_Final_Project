@@ -23,11 +23,14 @@ import org.w3c.dom.Text;
 
 import java.util.List;
 
+//Class for handling the dynamic cardView objects and populating with business information
+
 public class BusinessAdapter extends RecyclerView.Adapter<BusinessAdapter.BusinessViewHolder> {
     private Fragment frag = null;
     private LayoutInflater layoutInflater;
     private List<Business> data;
 
+    //Structure the BusinessAdapter for data list
     public BusinessAdapter(Context context, List<Business> data) {
         this.layoutInflater = LayoutInflater.from(context);
         this.data = data;
@@ -45,6 +48,9 @@ public class BusinessAdapter extends RecyclerView.Adapter<BusinessAdapter.Busine
         View view = layoutInflater.inflate(R.layout.businesscardview, viewGroup, false);
         return new BusinessViewHolder(view);
     }
+
+    //This method is used for setting and displaying the loaded content of a CardView
+    //This contains the business title, location, description, rating, phone, type, etc.
 
     @Override
     public void onBindViewHolder(@NonNull final BusinessViewHolder viewHolder, int i) {
@@ -64,7 +70,6 @@ public class BusinessAdapter extends RecyclerView.Adapter<BusinessAdapter.Busine
 
         viewHolder.setcallback(frag);
 
-
         if(SecondaryActivity.getProfile().businessExistsInFavorites(business)) {
             viewHolder.toggle.setChecked(true);
         } else {
@@ -75,6 +80,7 @@ public class BusinessAdapter extends RecyclerView.Adapter<BusinessAdapter.Busine
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
 
+                //Handles toggling for user favorites and adding favorites on checked change.
                 if(!SecondaryActivity.getProfile().businessExistsInFavorites(business)) {
                     SecondaryActivity.getProfile().addBusinessToFavorites(business);
                     viewHolder.toggle.setChecked(true);
@@ -83,16 +89,17 @@ public class BusinessAdapter extends RecyclerView.Adapter<BusinessAdapter.Busine
                     viewHolder.toggle.setChecked(false);
                 }
 
+                //New Data Extraction, get user Profile
                 Driver driver = new Driver();
                 driver.update(SecondaryActivity.getProfile());
 
+                //Unfavorite a favorite if it is not favorited anymore by the user.
                 if(frag!= null){
                     ((FavFragment) frag).unFavorite();
                 }
 
             }
         });
-
     }
 
     @Override
@@ -118,6 +125,8 @@ public class BusinessAdapter extends RecyclerView.Adapter<BusinessAdapter.Busine
             this.fragment = (FavFragment)fragment;
         }
 
+        //This holder handles the setters for cardview content.
+
         BusinessViewHolder(View itemView) {
             super(itemView);
             cv = (CardView) itemView.findViewById(R.id.cv);
@@ -130,7 +139,5 @@ public class BusinessAdapter extends RecyclerView.Adapter<BusinessAdapter.Busine
             toggle = itemView.findViewById(R.id.favBtn);
         }
     }
-
-
 }
 

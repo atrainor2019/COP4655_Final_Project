@@ -4,6 +4,10 @@ import java.io.Serializable;
 import java.util.ArrayList;
 
 public class Business implements Serializable {
+
+    //Class feature declaration.
+    //Features: Business name, business address, business image, business phone,
+    //Business type, Business location for Map updating, and business rating.
     private String name;
     private String address;
     private String business_img;
@@ -14,8 +18,10 @@ public class Business implements Serializable {
     private double business_rating;
     private String key_id;
 
-
+    //Favorited Businesses
     private ArrayList<Business> favorites;
+
+    //Business class that models a business including important features that will be called and displayed.
 
     public Business(String name, String business_img, double business_lat, double business_lon, String address, double business_rating, String business_phone, String business_type) {
         this.name = name;
@@ -29,6 +35,9 @@ public class Business implements Serializable {
         this.business_lon = business_lon;
         this.key_id = key_id;
     }
+
+    //Helper functions for grabbing business items that were obtained during API Request.
+    //Called for processing and outputting business features.
 
     public String getTitle() {
         return name;
@@ -48,6 +57,7 @@ public class Business implements Serializable {
         return favorites;
     }
 
+    //For Testing
     public String getFavorite1(){return favorites.toString();}
 
     public double getLat() { return business_lat; }
@@ -56,6 +66,7 @@ public class Business implements Serializable {
 
     public String getRating(){return "Rating: " + String.valueOf(business_rating) + "/" + "5.0"; }
 
+    //For Testing
     public String getKey_id() {
         return key_id;
     }

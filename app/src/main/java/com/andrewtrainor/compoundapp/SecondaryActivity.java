@@ -41,6 +41,9 @@ public class SecondaryActivity extends AppCompatActivity {
     }
 
 
+    //set cases for bottom Navigation to send the user to the correct fragment. navListener
+    //tells when a BottomNav Item is selected and the fragment needs to be updated.
+
     private BottomNavigationView.OnNavigationItemSelectedListener navListener =
             new BottomNavigationView.OnNavigationItemSelectedListener() {
                 @Override
@@ -56,6 +59,9 @@ public class SecondaryActivity extends AppCompatActivity {
                         case R.id.navigation_favorites:
                             selectedFragment = new FavFragment();
                             break;
+
+                        //if the user selects the NavigationItem to Logout, signout user instance using FirebaseAuth
+                        //send the user back to the login screen in case they want to login again.
                         case R.id.navigation_logout:
                             FirebaseAuth.getInstance().signOut();
                             Intent i = new Intent(getApplication(), Login.class);

@@ -31,6 +31,7 @@ public class Login extends AppCompatActivity {
     private static Driver driver = new Driver();
     private Profile profile;
 
+    //on Activity creation, outline layouts and set up onclicks to ping when the user wants to log in.
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -43,6 +44,8 @@ public class Login extends AppCompatActivity {
         mLoginBtn = findViewById(R.id.loginBtn);
         mCreateBtn = findViewById(R.id.createText);
 
+        //On click, the user is sent to the Registration Activity. This is for the case that the user
+        //is wrongly at the login screen and does not have an account.
         mCreateBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -50,12 +53,15 @@ public class Login extends AppCompatActivity {
             }
         });
 
+        //On click for login, error checking for if the user did not enter an email or password
+        //Password must be greater than 6 characters.
         mLoginBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 String email = mEmail.getText().toString().trim();
                 String password = mPassword.getText().toString().trim();
 
+                //Error checking for empty Email, empty password and Password Length.
                 if(TextUtils.isEmpty(email)){
                     mEmail.setError("Email is required.");
                     return;
@@ -70,16 +76,22 @@ public class Login extends AppCompatActivity {
                     return;
                 }
 
+                //Call signInWithEmailAndPassword to authenticate user sign in
                 fAuth.signInWithEmailAndPassword(email,password).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
                     @Override
                     public void onComplete(@NonNull Task<AuthResult> task) {
+
+                        //User Sign in is successful
                         if(task.isSuccessful()){
                             profile = driver.create(email, password);
                             Toast.makeText(Login.this, "User sucessfully logged in.", Toast.LENGTH_SHORT).show();
 
+                            //Prepare and send the user to the next activity to access application features.
                             Intent intent = new Intent(context, SecondaryActivity.class);
                             intent.putExtra("profileobj", profile);
                             startActivity(intent);
+
+                            //login error
                         }else {
                             Toast.makeText(Login.this, "Error ! " + task.getException().getMessage(), Toast.LENGTH_SHORT).show();
                         }
