@@ -67,6 +67,12 @@ public class SearchFragment extends Fragment implements OnMapReadyCallback {
 
                     case R.id.radio1:
                         business_items.clear();
+                        searchByName();
+                        break;
+
+                    case R.id.radio6:
+                        business_items.clear();
+                        searchByLoc();
                         break;
                 }
             }
@@ -75,25 +81,9 @@ public class SearchFragment extends Fragment implements OnMapReadyCallback {
         business_items = new ArrayList<Business>();
         Driver = new Driver();
 
-        searchByLoc();
+       trendingHot();
 
         return root;
-    }
-
-    public void searchByCategory() {
-
-        Driver.getGyms(new BusinessData() {
-            @Override
-            public void BusinessRequest(ArrayList<Business> businesses) {
-                business_items.clear();
-                for (Business business : businesses) {
-                    business_items.add(business);
-                }
-
-                adapter = new BusinessAdapter(getActivity().getApplicationContext(), business_items);
-                recyclerView.setAdapter(adapter);
-            }
-        });
     }
 
     public void searchByName() {
@@ -116,13 +106,18 @@ public class SearchFragment extends Fragment implements OnMapReadyCallback {
 
     public void searchByLoc() {
 
-        Driver.getRestaurants(new BusinessData() {
+        String title = user_input.getText().toString();
+        String [] nameLoc = title.split("\\s*,\\s*");
+        String name = nameLoc [0];
+        String loc = nameLoc [1];
+        Driver.getByLoc(name, loc, new BusinessData() {
             @Override
             public void BusinessRequest(ArrayList<Business> businesses) {
                 business_items.clear();
+                mMap.clear();
                 for (Business business : businesses) {
                     business_items.add(business);
-
+                    newLocation(business.getLat(), business.getLon(), business.getTitle());
                 }
 
                 adapter = new BusinessAdapter(getActivity().getApplicationContext(), business_items);
@@ -150,11 +145,25 @@ public class SearchFragment extends Fragment implements OnMapReadyCallback {
             mMap.addMarker(new
                     MarkerOptions().position(pos).title(title));
 
-            LatLng posUpdated = new LatLng(26.3750, -80.1011);
-
-            mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(posUpdated, 11));
+            mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(pos, 11));
 
         }
+    }
+
+    public void trendingHot() {
+
+        Driver.getNewHot(new BusinessData() {
+            @Override
+            public void BusinessRequest(ArrayList<Business> businesses) {
+                business_items.clear();
+                for (Business business : businesses) {
+                    business_items.add(business);
+                }
+
+                adapter = new BusinessAdapter(getActivity().getApplicationContext(), business_items);
+                recyclerView.setAdapter(adapter);
+            }
+        });
     }
 }
 

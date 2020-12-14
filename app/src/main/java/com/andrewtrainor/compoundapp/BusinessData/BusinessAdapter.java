@@ -19,6 +19,8 @@ import com.andrewtrainor.compoundapp.R;
 import com.andrewtrainor.compoundapp.SecondaryActivity;
 import com.squareup.picasso.Picasso;
 
+import org.w3c.dom.Text;
+
 import java.util.List;
 
 public class BusinessAdapter extends RecyclerView.Adapter<BusinessAdapter.BusinessViewHolder> {
@@ -55,6 +57,10 @@ public class BusinessAdapter extends RecyclerView.Adapter<BusinessAdapter.Busine
         viewHolder.Business_title.setText(business.getTitle());
         viewHolder.business_lat = business.getLat();
         viewHolder.business_lon = business.getLon();
+        viewHolder.Business_description.setText(business.getDescription());
+        viewHolder.business_rating.setText(business.getRating());
+        viewHolder.Business_phone.setText(business.getPhone());
+        viewHolder.Business_type.setText(business.getBusiness_type());
 
         viewHolder.setcallback(frag);
 
@@ -98,9 +104,12 @@ public class BusinessAdapter extends RecyclerView.Adapter<BusinessAdapter.Busine
         CardView cv;
         TextView Business_description;
         TextView Business_title;
+        TextView Business_phone;
+        TextView Business_type;
         private Fragment fragment = null;
         double business_lat;
         double business_lon;
+        TextView business_rating;
         ImageView Business_photo;
         public Business business;
         private ToggleButton toggle;
@@ -113,8 +122,11 @@ public class BusinessAdapter extends RecyclerView.Adapter<BusinessAdapter.Busine
             super(itemView);
             cv = (CardView) itemView.findViewById(R.id.cv);
             Business_description = (TextView) itemView.findViewById(R.id.cardDescription);
+            Business_phone = (TextView) itemView.findViewById(R.id.cardPhone);
             Business_title = (TextView) itemView.findViewById(R.id.cardTitle);
+            business_rating = (TextView) itemView.findViewById(R.id.cardRating);
             Business_photo = (ImageView) itemView.findViewById(R.id.imageView);
+            Business_type = (TextView) itemView.findViewById(R.id.cardType);
             toggle = itemView.findViewById(R.id.favBtn);
         }
     }

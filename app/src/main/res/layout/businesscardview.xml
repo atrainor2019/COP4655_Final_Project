@@ -66,21 +66,75 @@
                 app:layout_constraintHorizontal_bias="0.0"
                 app:layout_constraintStart_toEndOf="@+id/imageView"
                 app:layout_constraintTop_toBottomOf="@+id/cardTitle"
-                app:layout_constraintVertical_bias="0.0" />
+                app:layout_constraintVertical_bias="0.227" />
+
+            <TextView
+                android:id="@+id/cardRating"
+                android:layout_width="240dp"
+                android:layout_height="27dp"
+                android:layout_marginStart="8dp"
+                android:layout_marginEnd="8dp"
+                android:layout_marginBottom="28dp"
+                android:ellipsize="end"
+                android:gravity="center"
+                android:maxLines="5"
+                android:text="Sample Card Description"
+                android:textColor="@android:color/white"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.578"
+                app:layout_constraintStart_toEndOf="@+id/imageView"
+                app:layout_constraintTop_toBottomOf="@+id/cardDescription" />
+
+            <TextView
+                android:id="@+id/cardType"
+                android:layout_width="236dp"
+                android:layout_height="26dp"
+                android:layout_marginStart="8dp"
+                android:layout_marginEnd="8dp"
+                android:ellipsize="end"
+                android:gravity="center"
+                android:maxLines="5"
+                android:text="Sample Card Description"
+                android:textColor="@android:color/white"
+                app:layout_constraintBottom_toTopOf="@+id/cardDescription"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.533"
+                app:layout_constraintStart_toEndOf="@+id/imageView"
+                app:layout_constraintTop_toBottomOf="@+id/cardTitle" />
+
+            <TextView
+                android:id="@+id/cardPhone"
+                android:layout_width="216dp"
+                android:layout_height="19dp"
+                android:layout_marginStart="8dp"
+                android:layout_marginEnd="8dp"
+                android:ellipsize="end"
+                android:gravity="center"
+                android:maxLines="5"
+                android:text="Sample Card Description"
+                android:textColor="@android:color/white"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="1.0"
+                app:layout_constraintStart_toEndOf="@+id/imageView"
+                app:layout_constraintTop_toBottomOf="@+id/cardRating" />
 
             <ToggleButton
                 android:id="@+id/favBtn"
                 android:layout_width="28dp"
                 android:layout_height="25dp"
-                android:layout_marginTop="56dp"
+                android:layout_marginTop="34dp"
+                android:layout_marginBottom="28dp"
                 android:background="@drawable/toggle_image"
                 android:text="ToggleButton"
                 android:textOff=""
                 android:textOn=""
+                app:layout_constraintBottom_toBottomOf="@+id/cardRating"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.976"
+                app:layout_constraintHorizontal_bias="0.985"
                 app:layout_constraintStart_toEndOf="@+id/imageView"
-                app:layout_constraintTop_toBottomOf="@+id/cardDescription" />
+                app:layout_constraintTop_toTopOf="@+id/cardType" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 
